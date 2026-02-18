@@ -1,0 +1,32 @@
+git config --global --unset user.name
+git config --global --unset user.email
+
+git config --global --list
+
+
+cd C:\
+
+mkdir proyectos
+cd proyectos
+
+git clone "Repositorio URL"
+
+cd nombre-del-repositorio
+
+git branch
+
+git branch -a
+
+git checkout "nombre de la rama a la que voy a cambiar "
+
+git branch
+
+git fetch
+
+git fetch --all
+git branch -a
+
+git checkout jjax-2025012
+git add .
+git commit -m "Agregando mejoras"
+git push -u origin develop

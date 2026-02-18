@@ -1,0 +1,21 @@
+Mi proyecto es una API REST desarrollada con Spring Boot que permite gestionar insumos dentro de un sistema de enfermería. La aplicación sigue una arquitectura en capas, separando la lógica en entidad, repositorio y controlador, lo que permite que el código sea organizado, escalable y fácil de mantener.
+
+Primero, tenemos la entidad Insumo, que representa la tabla insumos en la base de datos. Está anotada con @Entity, lo que indica que es una clase persistente manejada por JPA. Cada atributo de la clase, como nombre, tipo, cantidad, fecha de vencimiento y proveedor, corresponde a una columna en la tabla. El campo id es la clave primaria y se genera automáticamente con la estrategia IDENTITY. Esta entidad es la que permite que los datos se conviertan entre objetos Java y registros en la base de datos.
+
+Luego está el repositorio, que es una interfaz que extiende JpaRepository. Gracias a Spring Data JPA, no es necesario escribir consultas SQL manualmente, ya que automáticamente nos proporciona métodos como findAll, findById, save, deleteById y existsById. El repositorio actúa como una capa intermedia entre el controlador y la base de datos.
+
+Después tenemos el controlador, que está anotado con @RestController y maneja las peticiones HTTP. Define los endpoints para realizar las operaciones CRUD:
+
+GET para listar todos los insumos o buscar uno por ID.
+
+POST para crear un nuevo insumo.
+
+PUT para actualizar uno existente.
+
+DELETE para eliminarlo.
+
+El controlador utiliza ResponseEntity para devolver respuestas HTTP adecuadas, como 200 OK, 201 CREATED, 404 NOT FOUND o 204 NO CONTENT, dependiendo del resultado de la operación.
+
+Finalmente, en el archivo application.properties se configura la conexión a la base de datos MySQL. Se define la URL, el usuario, la contraseña y el driver. Además, se configura Hibernate con la opción ddl-auto=update, lo que permite que las tablas se creen o actualicen automáticamente según la entidad sin perder datos existentes.
+
+En resumen, el flujo de la aplicación es el siguiente: el cliente envía una petición HTTP, el controlador la recibe, llama al repositorio, el repositorio interactúa con la base de datos usando JPA y Hibernate, y finalmente se devuelve una respuesta en formato JSON. Esto permite tener una API estructurada, eficiente y alineada con buenas prácticas de desarrollo backend.
